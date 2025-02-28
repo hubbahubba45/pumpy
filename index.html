@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pumpy</title>
-          <!-- Favicon links -->
-          <link rel="icon" href="pumpy.jpg" type="image/png">
-          <link rel="shortcut icon" href="pumpy.jpg" type="image/png">
-          <link rel="apple-touch-icon" href="pumpy.jpg">
+    <!-- Favicon links -->
+    <link rel="icon" href="pumpy.jpg" type="image/png">
+    <link rel="shortcut icon" href="pumpy.jpg" type="image/png">
+    <link rel="apple-touch-icon" href="pumpy.jpg">
     <style>
         body {
             margin: 0;
             overflow: hidden;
             background-color: #000000;
-            cursor: none;
             font-family: Arial, sans-serif;
+            touch-action: manipulation;
         }
         
         #ocean {
@@ -48,11 +48,18 @@
         
         #pumpy {
             position: absolute;
-            width: 120px;
-            height: 200px;
+            width: 100px;
+            height: 160px;
             transition: transform 0.1s;
             transform-origin: center;
             z-index: 10;
+        }
+        
+        @media (min-width: 768px) {
+            #pumpy {
+                width: 120px;
+                height: 200px;
+            }
         }
         
         .cylinder {
@@ -86,12 +93,18 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .eyes {
+                gap: 30px;
+            }
         }
         
         .eye {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: #111;
             display: flex;
@@ -99,11 +112,25 @@
             align-items: center;
         }
         
+        @media (min-width: 768px) {
+            .eye {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
         .pupil {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: white;
+        }
+        
+        @media (min-width: 768px) {
+            .pupil {
+                width: 12px;
+                height: 12px;
+            }
         }
         
         .mouth {
@@ -111,64 +138,114 @@
             bottom: 40%;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 20px;
+            width: 35px;
+            height: 18px;
             background: #111;
             border-radius: 10px;
             transition: all 0.3s ease;
         }
         
+        @media (min-width: 768px) {
+            .mouth {
+                width: 40px;
+                height: 20px;
+            }
+        }
+        
         .mouth.happy {
-            height: 20px;
+            height: 18px;
             border-radius: 0 0 20px 20px;
         }
         
         .mouth.sad {
-            height: 20px;
+            height: 18px;
             border-radius: 20px 20px 0 0;
             bottom: 35%;
         }
         
         .mouth.surprised {
-            height: 30px;
-            width: 30px;
+            height: 25px;
+            width: 25px;
             border-radius: 50%;
         }
         
+        @media (min-width: 768px) {
+            .mouth.surprised {
+                height: 30px;
+                width: 30px;
+            }
+        }
+        
         .mouth.mischievous {
-            height: 10px;
-            width: 40px;
+            height: 8px;
+            width: 35px;
             transform: translateX(-50%) rotate(10deg);
+        }
+        
+        @media (min-width: 768px) {
+            .mouth.mischievous {
+                height: 10px;
+                width: 40px;
+            }
         }
 
         .mouth.tongue {
-            height: 20px;
+            height: 18px;
             border-radius: 0 0 20px 20px;
         }
         
+        @media (min-width: 768px) {
+            .mouth.tongue {
+                height: 20px;
+            }
+        }
+        
         .mouth.nom {
-            height: 25px;
-            width: 40px;
+            height: 22px;
+            width: 35px;
             border-radius: 0 0 20px 20px;
             animation: nom 0.5s ease;
         }
         
+        @media (min-width: 768px) {
+            .mouth.nom {
+                height: 25px;
+                width: 40px;
+            }
+        }
+        
         @keyframes nom {
-            0% { height: 20px; }
-            50% { height: 35px; }
-            100% { height: 25px; }
+            0% { height: 18px; }
+            50% { height: 28px; }
+            100% { height: 22px; }
+        }
+        
+        @media (min-width: 768px) {
+            @keyframes nom {
+                0% { height: 20px; }
+                50% { height: 35px; }
+                100% { height: 25px; }
+            }
         }
         
         .tongue {
             position: absolute;
-            width: 20px;
-            height: 15px;
+            width: 18px;
+            height: 12px;
             background: #ff6b6b;
             border-radius: 0 0 10px 10px;
-            bottom: -8px;
+            bottom: -6px;
             left: 50%;
             transform: translateX(-50%);
             display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .tongue {
+                width: 20px;
+                height: 15px;
+                bottom: -8px;
+            }
         }
         
         .mouth.tongue .tongue,
@@ -184,33 +261,61 @@
         
         .arm {
             position: absolute;
-            width: 40px;
-            height: 60px;
+            width: 30px;
+            height: 50px;
             background: #32CD32;
-            border-radius: 20px;
+            border-radius: 15px;
             transition: background 0.3s ease;
         }
         
+        @media (min-width: 768px) {
+            .arm {
+                width: 40px;
+                height: 60px;
+                border-radius: 20px;
+            }
+        }
+        
         .arm.left {
-            left: -20px;
+            left: -15px;
             transform-origin: right top;
             transform: rotate(20deg);
         }
         
+        @media (min-width: 768px) {
+            .arm.left {
+                left: -20px;
+            }
+        }
+        
         .arm.right {
-            right: -20px;
+            right: -15px;
             transform-origin: left top;
             transform: rotate(-20deg);
         }
         
+        @media (min-width: 768px) {
+            .arm.right {
+                right: -20px;
+            }
+        }
+        
         .hand {
             position: absolute;
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             background: #32CD32;
             border-radius: 50%;
-            bottom: -10px;
+            bottom: -8px;
             transition: background 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .hand {
+                width: 25px;
+                height: 25px;
+                bottom: -10px;
+            }
         }
         
         .arm.left .hand {
@@ -223,8 +328,8 @@
         
         .light-radius {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 300px;
+            height: 300px;
             background: radial-gradient(
                 circle,
                 rgba(50, 205, 50, 0.3) 0%,
@@ -238,52 +343,91 @@
             transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
         }
         
+        @media (min-width: 768px) {
+            .light-radius {
+                width: 500px;
+                height: 500px;
+            }
+        }
+        
         .name {
             position: absolute;
-            top: -30px;
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
             background: #ff3232;
             color: white;
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: 5px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
             white-space: nowrap;
+        }
+        
+        @media (min-width: 768px) {
+            .name {
+                top: -30px;
+                padding: 3px 10px;
+                font-size: 16px;
+            }
         }
         
         .score {
             position: absolute;
-            top: -60px;
+            top: -50px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
             color: #32CD32;
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: 5px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 12px;
+        }
+        
+        @media (min-width: 768px) {
+            .score {
+                top: -60px;
+                padding: 3px 10px;
+                font-size: 14px;
+            }
         }
         
         .orbi {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             background: #ffde00;
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(255, 222, 0, 0.5);
             z-index: 5;
         }
         
+        @media (min-width: 768px) {
+            .orbi {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
         .orbi::before {
             content: '';
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-            top: 5px;
-            left: 5px;
+            top: 4px;
+            left: 4px;
+        }
+        
+        @media (min-width: 768px) {
+            .orbi::before {
+                width: 10px;
+                height: 10px;
+                top: 5px;
+                left: 5px;
+            }
         }
         
         .purple-orbi {
@@ -311,11 +455,32 @@
             position: fixed;
             bottom: 20px;
             left: 20px;
+            right: 20px;
             color: white;
             background: rgba(0, 0, 0, 0.5);
             padding: 10px;
             border-radius: 10px;
             z-index: 10;
+            font-size: 14px;
+        }
+        
+        @media (min-width: 768px) {
+            #info {
+                right: auto;
+                width: auto;
+                font-size: 16px;
+            }
+        }
+        
+        #info h3 {
+            margin-top: 0;
+            font-size: 16px;
+        }
+        
+        @media (min-width: 768px) {
+            #info h3 {
+                font-size: 18px;
+            }
         }
         
         #cursor {
@@ -327,6 +492,28 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 9999;
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            #cursor {
+                display: block;
+            }
+        }
+        
+        #touch-instructions {
+            display: none;
+            text-align: center;
+        }
+        
+        @media (max-width: 767px) {
+            #touch-instructions {
+                display: block;
+            }
+            
+            #mouse-instructions {
+                display: none;
+            }
         }
         
         #discord-link {
@@ -336,29 +523,51 @@
             transform: translate(-50%, -50%);
             background: rgba(114, 137, 218, 0.9);
             color: white;
-            padding: 20px 30px;
+            padding: 15px;
             border-radius: 10px;
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
             z-index: 100;
             display: none;
             box-shadow: 0 0 20px rgba(153, 50, 204, 0.8);
+            max-width: 90%;
+        }
+        
+        @media (min-width: 768px) {
+            #discord-link {
+                padding: 20px 30px;
+                font-size: 18px;
+                max-width: 400px;
+            }
         }
         
         #discord-link h2 {
             margin-top: 0;
+            font-size: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            #discord-link h2 {
+                font-size: 24px;
+            }
         }
         
         #discord-link a {
             display: inline-block;
             margin-top: 15px;
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: #7289da;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             transition: background 0.3s;
+        }
+        
+        @media (min-width: 768px) {
+            #discord-link a {
+                padding: 10px 20px;
+            }
         }
         
         #discord-link a:hover {
